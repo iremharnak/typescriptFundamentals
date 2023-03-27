@@ -1,5 +1,10 @@
 const prefix = '🐉 ';
 
+type ProductType = {
+  id: number;
+  name: string;
+  icon?: string;
+}
 export default async function updateOutput(id: string) {
   // Todo
 }
@@ -50,9 +55,26 @@ function runTheLearningSamples() {
       icon: 'fas fa-cheese',
     },
   ]
-   function getProductNames() {
+   function getProductNames() : string[] {
       return sampleProducts.map((p) => p.name);
    }
    console.log(`${prefix} return array`);
-   console.log()
+   console.log(getProductNames());
+
+   function getProductById(id: number) : ProductType | undefined {
+    return sampleProducts.find((p) => id === p.id);
+   }
+   console.log(`${prefix} return ProductType`);
+   console.log(getProductById(10));
+   
+   function displayProducts(products: ProductType[]) : void {
+    const productNames = products.map(p => {
+      const name = p.name.toLowerCase();
+      return name;
+    });
+    const msg = `Sample products include: ${productNames.join(', ')}`;
+    console.log(`${prefix} return void`);
+    console.log(msg);
+   }
+   displayProducts(sampleProducts);
 }
