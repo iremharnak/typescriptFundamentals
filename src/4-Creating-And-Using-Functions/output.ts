@@ -113,4 +113,55 @@ function runTheLearningSamples() {
     console.log(msg);
    }
    displayProducts(sampleProducts);
+   const getRandomInt = (max: number) => Math.floor(Math.random()* max);
+
+   function createProduct(name: string, icon?: string): ProductType {
+    const id = getRandomInt(1000);
+    return {
+      id,
+      name,
+      icon
+    };
+   }
+   console.log(`${prefix} Optional Parameters`);
+   let pineapple =createProduct('pineapple', 'pine-apple.jpg');
+   let mango = createProduct('mango');
+   console.log(pineapple, mango);
+
+   function createProductWithDefaults(name: string, icon: string = 'generic-fruit.jpg') : ProductType {
+    const id = getRandomInt(500);
+    return {
+      id,
+      name,
+      icon
+    };
+   }
+  
+   console.log(`${prefix} Default Parameters`);
+   pineapple =createProductWithDefaults('pineapple', 'pine-apple.jpg');
+   mango = createProductWithDefaults('mango');
+   console.log(pineapple, mango);
+
+   function buildAddress(street: string, city: string, ...restOfAddress: string[]) {
+    const address = `${street} ${city} ${restOfAddress.join(' ')} `;
+    return address;
+   }
+   const someAddress = buildAddress(
+    '1 lois lane',
+    'smallville',
+    'apt 101',
+    'mystery country',
+    );
+
+    console.log(`${prefix} Rest Parameters`);
+    console.log(someAddress);
+
+    function displayProduct({ id, name}: ProductType) : void {
+      console.log(`${prefix} Destructuring Parameters`);
+      console.log(`Product id= ${id} and name = ${name}`);
+    }
+    const prod = getProductById(10);
+    if(prod) {
+      displayProduct(prod);
+    }
 }
